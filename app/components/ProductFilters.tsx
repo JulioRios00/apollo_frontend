@@ -46,11 +46,11 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           displayEmpty
         >
           <MenuItem value="">Todas as categorias</MenuItem>
-          <MenuItem value="smartphones">Smartphones</MenuItem>
-          <MenuItem value="furniture">Móveis</MenuItem>
-          <MenuItem value="eletronics">Eletrônicos</MenuItem>
-          <MenuItem value="portable_appliances">Eletroportáteis</MenuItem>
-          <MenuItem value="refrigerator">Geladeiras</MenuItem>
+          <MenuItem value="Smartphones">Smartphones</MenuItem>
+          <MenuItem value="Móveis">Móveis</MenuItem>
+          <MenuItem value="Eletrônicos">Eletrônicos</MenuItem>
+          <MenuItem value="Eletroportáteis">Eletroportáteis</MenuItem>
+          <MenuItem value="Geladeiras">Geladeiras</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 200 }}>
@@ -67,8 +67,8 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
         >
           <MenuItem value="">Selecionar</MenuItem>
           <MenuItem value="alphabetical">Ordem Alfabética</MenuItem>
-          <MenuItem value="priceAsc">Crescente</MenuItem>
-          <MenuItem value="priceDesc">Decrescente</MenuItem>
+          <MenuItem value="priceAsc">Menor preço</MenuItem>
+          <MenuItem value="priceDesc">Maior preço</MenuItem>
         </Select>
       </FormControl>
     </Box>

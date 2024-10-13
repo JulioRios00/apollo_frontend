@@ -19,7 +19,7 @@ const ProductForm: React.FC = () => {
     name: "",
     description: "",
     color: "",
-    category: "",
+    category_display: "",
     price: "",
   });
 
@@ -42,7 +42,7 @@ const ProductForm: React.FC = () => {
         name: "",
         description: "",
         color: "",
-        category: "",
+        category_display: "",
         price: "",
       });
       setOpen(true);
@@ -86,18 +86,18 @@ const ProductForm: React.FC = () => {
         <InputLabel id="category-label">Categoria</InputLabel>
         <Select
           labelId="category-label"
-          id="category"
-          name="category"
-          value={product.category}
+          id="category_display"
+          name="category_display"
+          value={product.category_display}
           label="category"
           onChange={(e) =>
             setProduct({
               ...product,
-              category: e.target.value as string,
+              category_display: e.target.value as string,
             })
           }
         >
-          <MenuItem value={"smartphones"}>SmartPhones</MenuItem>
+          <MenuItem value={"smartphones"}>Smartphones</MenuItem>
           <MenuItem value={"furniture"}>Móveis</MenuItem>
           <MenuItem value={"eletronics"}>Eletrônicos</MenuItem>
           <MenuItem value={"portable_appliances"}>Eletroportáteis</MenuItem>

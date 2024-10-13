@@ -36,6 +36,7 @@ const ProductTable: React.FC = () => {
 
   useEffect(() => {
     api.get("/products/").then((response) => {
+      console.log(response.data);
       setProducts(response.data);
     });
   }, []);
@@ -91,7 +92,7 @@ const ProductTable: React.FC = () => {
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.description}</TableCell>
                 <TableCell>{product.color}</TableCell>
-                <TableCell>{product.category}</TableCell>
+                <TableCell>{product.category_display}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>{product.promotional_price}</TableCell>
                 <TableCell>

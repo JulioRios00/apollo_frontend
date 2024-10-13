@@ -5,7 +5,7 @@ interface Product {
   name: string;
   description: string;
   color: string;
-  category: string;
+  category_display: string;
   price: number;
   promotional_price: number;
 }
@@ -24,7 +24,7 @@ export const ProductFilter = (products: Product[]) => {
     let filteredItems = products.filter((product) => {
       return (
         product.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-        (categoryFilter ? product.category === categoryFilter : true)
+        (categoryFilter ? product.category_display === categoryFilter : true)
       );
     });
 
