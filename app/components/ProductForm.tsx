@@ -15,6 +15,8 @@ import {
   Typography,
 } from "@mui/material";
 
+import { consts } from "../utils/constants";
+
 const ProductForm: React.FC = () => {
   const [product, setProduct] = useState({
     name: "",
@@ -52,7 +54,7 @@ const ProductForm: React.FC = () => {
     } catch (error) {
       setSeverity("error");
       setOpen(true);
-      setError("Erro ao cadastrar o produto. Tente novamente");
+      setError(consts.productForm.errorMessage);
       console.error(error);
     }
   };
@@ -71,7 +73,7 @@ const ProductForm: React.FC = () => {
       }}
     >
       <Typography variant="h3" sx={{ textAlign: "center" }}>
-        Cadastro de produto
+      {consts.productForm.title}
       </Typography>
       <TextField
         label="Nome do produto"
@@ -81,7 +83,7 @@ const ProductForm: React.FC = () => {
         required
       />
       <TextField
-        label="Descrição do produto"
+        label={consts.productForm.nameLabel}
         name="description"
         value={product.description}
         onChange={handleChange}
@@ -95,7 +97,7 @@ const ProductForm: React.FC = () => {
         required
       />
       <FormControl fullWidth>
-        <InputLabel id="category-label">Categoria</InputLabel>
+        <InputLabel id="category-label">{consts.productForm.categoryLabel}</InputLabel>
         <Select
           labelId="category-label"
           id="category"
@@ -109,15 +111,15 @@ const ProductForm: React.FC = () => {
             })
           }
         >
-          <MenuItem value={"smartphones"}>Smartphones</MenuItem>
-          <MenuItem value={"furniture"}>Móveis</MenuItem>
-          <MenuItem value={"eletronics"}>Eletrônicos</MenuItem>
-          <MenuItem value={"portable_appliances"}>Eletroportáteis</MenuItem>
-          <MenuItem value={"refrigerator"}>Geladeiras</MenuItem>
+          <MenuItem value={"smartphones"}>{consts.item.smartphones}</MenuItem>
+          <MenuItem value={"furniture"}>{consts.item.furniture}</MenuItem>
+          <MenuItem value={"eletronics"}>{consts.item.eletronics}</MenuItem>
+          <MenuItem value={"portable_appliances"}>{consts.item.portable_appliances}</MenuItem>
+          <MenuItem value={"refrigerator"}>{consts.item.refrigerator}</MenuItem>
         </Select>
       </FormControl>
       <TextField
-        label="Preço"
+        label={consts.productForm.priceLabel}
         name="price"
         value={product.price}
         onChange={handleChange}
@@ -125,7 +127,7 @@ const ProductForm: React.FC = () => {
         required
       />
       <Button type="submit" color="primary">
-        Cadastrar produto
+      {consts.productForm.submitButton}
       </Button>
       <Snackbar
         open={open}
@@ -133,7 +135,7 @@ const ProductForm: React.FC = () => {
         onClose={() => setOpen(false)}
       >
         <Alert onClose={() => setOpen(false)} severity={severity}>
-          {severity === "success" ? "Produto cadastrado com sucesso" : error}
+          {severity === "success" ? consts.productForm.successMessage : error}
         </Alert>
       </Snackbar>
     </Box>

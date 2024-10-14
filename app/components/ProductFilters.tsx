@@ -7,6 +7,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+import { consts } from "../utils/constants";
 
 interface ProductFiltersProps {
   nameFilter: string;
@@ -29,46 +30,46 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
     <Box sx={{ p: 1 }}>
       <TextField
         sx={{ m: 1 }}
-        label="Filtrar por nome"
+        label={consts.productFilters.nameFilterLabel}
         value={nameFilter}
         onChange={(e) => setNameFilter(e.target.value)}
       />
       <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel shrink id="category-label">
-          Filtrar por categorias
+        {consts.productFilters.categoryFilterLabel}
         </InputLabel>
         <Select
-          label="Filtrar por categorias"
+          label={consts.productFilters.sortLabel}
           labelId="category-label"
           id="category"
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
           displayEmpty
         >
-          <MenuItem value="">Todas as categorias</MenuItem>
-          <MenuItem value="smartphones">Smartphones</MenuItem>
-          <MenuItem value="furniture">Móveis</MenuItem>
-          <MenuItem value="eletronics">Eletrônicos</MenuItem>
-          <MenuItem value="portable_appliances">Eletroportáteis</MenuItem>
-          <MenuItem value="refrigerator">Geladeiras</MenuItem>
+          <MenuItem value="">{consts.productFilters.allCategories}</MenuItem>
+          <MenuItem value="smartphones">{consts.item.smartphones}</MenuItem>
+          <MenuItem value="furniture">{consts.item.furniture}</MenuItem>
+          <MenuItem value="eletronics">{consts.item.eletronics}</MenuItem>
+          <MenuItem value="portable_appliances">{consts.item.portable_appliances}</MenuItem>
+          <MenuItem value="refrigerator">{consts.item.refrigerator}</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel shrink id="sort-ordenation-label">
-          Ordenar por
+        {consts.productFilters.sortLabel}
         </InputLabel>
         <Select
-          label="Ordenar por"
+          label={consts.productFilters.sortLabel}
           labelId="sort-ordenation-label"
           id="sort-ordenation"
           value={sortOrdenation}
           onChange={(e) => setSortOrdenation(e.target.value)}
           displayEmpty
         >
-          <MenuItem value="">Selecionar</MenuItem>
-          <MenuItem value="alphabetical">Ordem Alfabética</MenuItem>
-          <MenuItem value="priceAsc">Menor preço</MenuItem>
-          <MenuItem value="priceDesc">Maior preço</MenuItem>
+          <MenuItem value="">{consts.productFilters.selectBy}</MenuItem>
+          <MenuItem value="alphabetical">{consts.productFilters.alphabetical}</MenuItem>
+          <MenuItem value="priceAsc">{consts.productFilters.priceAsc}</MenuItem>
+          <MenuItem value="priceDesc">{consts.productFilters.priceDesc}</MenuItem>
         </Select>
       </FormControl>
     </Box>

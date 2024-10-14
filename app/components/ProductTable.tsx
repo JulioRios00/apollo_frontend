@@ -16,6 +16,7 @@ import {
 
 import { ProductFilter } from "../hooks/ProductSorterFilter";
 import ProductFilters from "./ProductFilters";
+import { consts } from "../utils/constants";
 
 interface Product {
   id: number;
@@ -67,7 +68,7 @@ const ProductTable: React.FC = () => {
     <Box>
       <Box>
         <Typography sx={{ textAlign: "center" }} variant="h3" component="h1">
-          Lista de Produtos
+          {consts.productTable.title}
         </Typography>
       </Box>
       <Box sx={{ textAlign: "center" }}>
@@ -85,13 +86,13 @@ const ProductTable: React.FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Nome</TableCell>
-              <TableCell>Descrição</TableCell>
-              <TableCell>Cor</TableCell>
-              <TableCell>Categoria</TableCell>
-              <TableCell>Preço</TableCell>
-              <TableCell>Promoção</TableCell>
-              <TableCell>Ações</TableCell>
+              <TableCell>{consts.productTable.nameHeader}</TableCell>
+              <TableCell>{consts.productTable.descriptionHeader}</TableCell>
+              <TableCell>{consts.productTable.colorHeader}</TableCell>
+              <TableCell>{consts.productTable.categoryHeader}</TableCell>
+              <TableCell>{consts.productTable.priceHeader}</TableCell>
+              <TableCell>{consts.productTable.promotionalPriceHeader}</TableCell>
+              <TableCell>{consts.productTable.actionsHeader}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -110,7 +111,7 @@ const ProductTable: React.FC = () => {
                     color="primary"
                     onClick={() => handleDeleteProduct(product.id)}
                   >
-                    Excluir
+                    {consts.productTable.deleteButton}
                   </Button>
                 </TableCell>
               </TableRow>
