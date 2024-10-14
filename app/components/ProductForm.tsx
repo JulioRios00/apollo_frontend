@@ -27,8 +27,8 @@ const ProductForm: React.FC = () => {
   });
 
   const [error, setError] = useState<string | null>(null);
-  const [open, setOpen] = useState(false); 
-  const [severity, setSeverity] = useState<"success" | "error">("success"); 
+  const [open, setOpen] = useState(false);
+  const [severity, setSeverity] = useState<"success" | "error">("success");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
@@ -38,10 +38,9 @@ const ProductForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let parsedPrice = product.price.replace(/[.,]/g, "").replace(",", ".");
 
     try {
-      await api.post("/products/", {...product, price: parsedPrice});
+      await api.post("/products/", product);
       setProduct({
         name: "",
         description: "",
@@ -57,6 +56,7 @@ const ProductForm: React.FC = () => {
       setError(consts.productForm.errorMessage);
       console.error(error);
     }
+    console.log(product);
   };
 
   return (
@@ -73,31 +73,33 @@ const ProductForm: React.FC = () => {
       }}
     >
       <Typography variant="h3" sx={{ textAlign: "center" }}>
-      {consts.productForm.title}
+        {consts.productForm.title}
       </Typography>
       <TextField
-        label="Nome do produto"
+        label={consts.productForm.nameLabel}
         name="name"
         value={product.name}
         onChange={handleChange}
         required
       />
       <TextField
-        label={consts.productForm.nameLabel}
+        label={consts.productForm.descriptionLabel}
         name="description"
         value={product.description}
         onChange={handleChange}
         required
       />
       <TextField
-        label="Cor do produto"
+        label={consts.productForm.colorLabel}
         name="color"
         value={product.color}
         onChange={handleChange}
         required
       />
       <FormControl fullWidth>
-        <InputLabel id="category-label">{consts.productForm.categoryLabel}</InputLabel>
+        <InputLabel id="category-label">
+          {consts.productForm.categoryLabel}
+        </InputLabel>
         <Select
           labelId="category-label"
           id="category"
@@ -114,7 +116,9 @@ const ProductForm: React.FC = () => {
           <MenuItem value={"smartphones"}>{consts.item.smartphones}</MenuItem>
           <MenuItem value={"furniture"}>{consts.item.furniture}</MenuItem>
           <MenuItem value={"eletronics"}>{consts.item.eletronics}</MenuItem>
-          <MenuItem value={"portable_appliances"}>{consts.item.portable_appliances}</MenuItem>
+          <MenuItem value={"portable_appliances"}>
+            {consts.item.portable_appliances}
+          </MenuItem>
           <MenuItem value={"refrigerator"}>{consts.item.refrigerator}</MenuItem>
         </Select>
       </FormControl>
@@ -127,7 +131,7 @@ const ProductForm: React.FC = () => {
         required
       />
       <Button type="submit" color="primary">
-      {consts.productForm.submitButton}
+        {consts.productForm.submitButton}
       </Button>
       <Snackbar
         open={open}

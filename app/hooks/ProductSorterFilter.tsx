@@ -25,7 +25,9 @@ export const ProductFilter = (products: Product[]) => {
     let filteredItems = products.filter((product) => {
       return (
         product.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-        (categoryFilter ? product.category.toLowerCase() === categoryFilter.toLowerCase(): true)
+        (categoryFilter
+          ? product.category.toLowerCase() === categoryFilter.toLowerCase()
+          : true)
       );
     });
 
@@ -39,7 +41,6 @@ export const ProductFilter = (products: Product[]) => {
       filteredItems = filteredItems.sort((a, b) => b.price - a.price);
     }
     setFilteredProducts(filteredItems);
-
   };
   return {
     filteredProducts,
@@ -49,5 +50,5 @@ export const ProductFilter = (products: Product[]) => {
     setSortOrdenation,
     categoryFilter,
     setCategoryFilter,
-  }
+  };
 };

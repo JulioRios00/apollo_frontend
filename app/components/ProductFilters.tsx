@@ -36,7 +36,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
       />
       <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel shrink id="category-label">
-        {consts.productFilters.categoryFilterLabel}
+          {consts.productFilters.categoryFilterLabel}
         </InputLabel>
         <Select
           label={consts.productFilters.sortLabel}
@@ -50,13 +50,15 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <MenuItem value="smartphones">{consts.item.smartphones}</MenuItem>
           <MenuItem value="furniture">{consts.item.furniture}</MenuItem>
           <MenuItem value="eletronics">{consts.item.eletronics}</MenuItem>
-          <MenuItem value="portable_appliances">{consts.item.portable_appliances}</MenuItem>
+          <MenuItem value="portable_appliances">
+            {consts.item.portable_appliances}
+          </MenuItem>
           <MenuItem value="refrigerator">{consts.item.refrigerator}</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 200 }}>
         <InputLabel shrink id="sort-ordenation-label">
-        {consts.productFilters.sortLabel}
+          {consts.productFilters.sortLabel}
         </InputLabel>
         <Select
           label={consts.productFilters.sortLabel}
@@ -67,9 +69,13 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           displayEmpty
         >
           <MenuItem value="">{consts.productFilters.selectBy}</MenuItem>
-          <MenuItem value="alphabetical">{consts.productFilters.alphabetical}</MenuItem>
+          <MenuItem value="alphabetical">
+            {consts.productFilters.alphabetical}
+          </MenuItem>
           <MenuItem value="priceAsc">{consts.productFilters.priceAsc}</MenuItem>
-          <MenuItem value="priceDesc">{consts.productFilters.priceDesc}</MenuItem>
+          <MenuItem value="priceDesc">
+            {consts.productFilters.priceDesc}
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>

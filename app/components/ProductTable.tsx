@@ -61,6 +61,7 @@ const ProductTable: React.FC = () => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
+      maximumFractionDigits: 2,
     }).format(value);
   };
 
@@ -91,7 +92,9 @@ const ProductTable: React.FC = () => {
               <TableCell>{consts.productTable.colorHeader}</TableCell>
               <TableCell>{consts.productTable.categoryHeader}</TableCell>
               <TableCell>{consts.productTable.priceHeader}</TableCell>
-              <TableCell>{consts.productTable.promotionalPriceHeader}</TableCell>
+              <TableCell>
+                {consts.productTable.promotionalPriceHeader}
+              </TableCell>
               <TableCell>{consts.productTable.actionsHeader}</TableCell>
             </TableRow>
           </TableHead>
