@@ -1,6 +1,6 @@
 import React from "react";
 import ProductForm from "../components/ProductForm";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const AddProduct: React.FC = () => {
   return (
