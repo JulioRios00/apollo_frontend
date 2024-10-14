@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 
 interface Product {
+  category_display: ReactNode;
   id: number;
   name: string;
   description: string;
   color: string;
-  category_display: string;
+  category: string;
   price: number;
   promotional_price: number;
 }
@@ -24,7 +25,7 @@ export const ProductFilter = (products: Product[]) => {
     let filteredItems = products.filter((product) => {
       return (
         product.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-        (categoryFilter ? product.category_display === categoryFilter : true)
+        (categoryFilter ? product.category.toLowerCase() === categoryFilter.toLowerCase(): true)
       );
     });
 
@@ -38,6 +39,7 @@ export const ProductFilter = (products: Product[]) => {
       filteredItems = filteredItems.sort((a, b) => b.price - a.price);
     }
     setFilteredProducts(filteredItems);
+
   };
   return {
     filteredProducts,

@@ -10,8 +10,9 @@ import {
   Select,
   MenuItem,
   Button,
-  Snackbar, 
-  Alert
+  Snackbar,
+  Alert,
+  Typography,
 } from "@mui/material";
 
 const ProductForm: React.FC = () => {
@@ -19,15 +20,14 @@ const ProductForm: React.FC = () => {
     name: "",
     description: "",
     color: "",
-    category_display: "",
+    category: "",
     price: "",
   });
 
   const [error, setError] = useState<string | null>(null);
-  const [open, setOpen] = useState(false) //trocar nome
-  const [severity, setSeverity] = useState<'success' | 'error'>('success') //trocar nome
+  const [open, setOpen] = useState(false); 
+  const [severity, setSeverity] = useState<"success" | "error">("success"); 
 
-  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
   ) => {
@@ -36,21 +36,23 @@ const ProductForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    let parsedPrice = product.price.replace(/[.,]/g, "").replace(",", ".");
+
     try {
-      await api.post("/products/", product);
+      await api.post("/products/", {...product, price: parsedPrice});
       setProduct({
         name: "",
         description: "",
         color: "",
-        category_display: "",
+        category: "",
         price: "",
       });
       setOpen(true);
-      setSeverity('success');
+      setSeverity("success");
     } catch (error) {
-      setSeverity('error');
+      setSeverity("error");
       setOpen(true);
-      setError("Erro ao cadastrar o produto. Tente novamente")
+      setError("Erro ao cadastrar o produto. Tente novamente");
       console.error(error);
     }
   };
@@ -59,8 +61,18 @@ const ProductForm: React.FC = () => {
     <Box
       component="form"
       onSubmit={handleSubmit}
-      sx={{ display: "flex", flexDirection: "column", gap: 2, maxWidth: 400 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        maxWidth: 500,
+        margin: "auto",
+        height: "100vh",
+      }}
     >
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
+        Cadastro de produto
+      </Typography>
       <TextField
         label="Nome do produto"
         name="name"
@@ -86,14 +98,14 @@ const ProductForm: React.FC = () => {
         <InputLabel id="category-label">Categoria</InputLabel>
         <Select
           labelId="category-label"
-          id="category_display"
-          name="category_display"
-          value={product.category_display}
+          id="category"
+          name="category"
+          value={product.category}
           label="category"
           onChange={(e) =>
             setProduct({
               ...product,
-              category_display: e.target.value as string,
+              category: e.target.value as string,
             })
           }
         >
@@ -115,9 +127,13 @@ const ProductForm: React.FC = () => {
       <Button type="submit" color="primary">
         Cadastrar produto
       </Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(false)}>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+      >
         <Alert onClose={() => setOpen(false)} severity={severity}>
-          {severity === 'success' ? 'Produto cadastrado com sucesso' : error}
+          {severity === "success" ? "Produto cadastrado com sucesso" : error}
         </Alert>
       </Snackbar>
     </Box>

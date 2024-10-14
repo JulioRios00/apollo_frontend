@@ -11,11 +11,7 @@ import {
   TableHead,
   TableRow,
   Box,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  Typography,
 } from "@mui/material";
 
 import { ProductFilter } from "../hooks/ProductSorterFilter";
@@ -26,6 +22,7 @@ interface Product {
   name: string;
   description: string;
   color: string;
+  category_display: string;
   category: string;
   price: number;
   promotional_price: number;
@@ -36,7 +33,6 @@ const ProductTable: React.FC = () => {
 
   useEffect(() => {
     api.get("/products/").then((response) => {
-      console.log(response.data);
       setProducts(response.data);
     });
   }, []);
@@ -60,9 +56,21 @@ const ProductTable: React.FC = () => {
     }
   };
 
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(value);
+  };
+
   return (
     <Box>
       <Box>
+        <Typography sx={{ textAlign: "center" }} variant="h3" component="h1">
+          Lista de Produtos
+        </Typography>
+      </Box>
+      <Box sx={{ textAlign: "center" }}>
         <ProductFilters
           nameFilter={nameFilter}
           setNameFilter={setNameFilter}
@@ -93,12 +101,13 @@ const ProductTable: React.FC = () => {
                 <TableCell>{product.description}</TableCell>
                 <TableCell>{product.color}</TableCell>
                 <TableCell>{product.category_display}</TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>{product.promotional_price}</TableCell>
+                <TableCell>{formatCurrency(product.price)}</TableCell>
+                <TableCell>
+                  {formatCurrency(product.promotional_price)}
+                </TableCell>
                 <TableCell>
                   <Button
-                    variant="contained"
-                    color="secondary"
+                    color="primary"
                     onClick={() => handleDeleteProduct(product.id)}
                   >
                     Excluir

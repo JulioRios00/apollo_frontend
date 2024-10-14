@@ -1,24 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import React from 'react';
+import Link from 'next/link';
+import { AppBar, Toolbar, Button, Box } from '@mui/material';
 
 const Header: React.FC = () => {
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Gerenciador de produtos</Link>
-          </Typography>
-          <Button component={Link} to="/add-product" color="inherit">
-            Cadastrar Produto
-          </Button>
-          <Button component={Link} to="/product-list" color="inherit">
-            Listar Produtos
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static">
+      <Toolbar
+        sx={{
+          display: 'flex',
+          justifyContent: 'center', 
+        }}
+      >
+        <Box sx={{ display: 'flex', gap: 2 }}> 
+          <Link href="/product-list" passHref legacyBehavior>
+            <Button color="inherit" component="a"> 
+              Listagem de Produtos
+            </Button>
+          </Link>
+
+          <Link href="/add-new-product" passHref legacyBehavior>
+            <Button color="inherit" component="a">
+              Cadastrar Produto
+            </Button>
+          </Link>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
