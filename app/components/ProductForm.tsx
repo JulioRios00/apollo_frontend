@@ -40,7 +40,7 @@ const ProductForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      await api.post("/products/", product);
+      await api.post("https://julioaraujo00.pythonanywhere.com/products/", product);
       setProduct({
         name: "",
         description: "",

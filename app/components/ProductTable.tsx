@@ -33,7 +33,7 @@ const ProductTable: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    api.get("/products/").then((response) => {
+    api.get("https://julioaraujo00.pythonanywhere.com/products/").then((response) => {
       setProducts(response.data);
     });
   }, []);
@@ -50,7 +50,7 @@ const ProductTable: React.FC = () => {
 
   const handleDeleteProduct = async (id: number) => {
     try {
-      await api.delete(`/products/${id}/`);
+      await api.delete(`https://julioaraujo00.pythonanywhere.com/products/${id}/`);
       setProducts(products.filter((product) => product.id !== id));
     } catch (error) {
       console.error(error);
