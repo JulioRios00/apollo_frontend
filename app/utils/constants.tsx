@@ -38,4 +38,11 @@ export const consts = {
     portable_appliances: "Eletroportáteis",
     refrigerator: "Geladeiras",
   },
+  login: {
+    user: "Nome de usuário",
+    login: "Login",
+    loading: "Carregando...",
+    password: "Senha",
+    invalidPass: "Nome de usuário ou senha inválidos.",
+  },
 };
